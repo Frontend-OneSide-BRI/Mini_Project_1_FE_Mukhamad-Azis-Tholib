@@ -8,6 +8,9 @@ Mini project repository
 - [x] Penggunaan hyperlink untuk navigasi antar halaman
 - [x] Penyusunan UI/UX yang rapi
 
+### Demo
+![img](/Mini_Project_1_FE_Mukhamad-Azis-Tholib/Gallery.id%20-%20Google%20Chrome%202023-05-31%2023-00-00.gif)
+
 
 
 ### Contributors:
