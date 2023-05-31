@@ -170,7 +170,6 @@ const galleryItems = [
 ];
 
 const galleryItemsContainer = document.getElementById("gallery-items");
-const searchBox = document.getElementById("search-box");
 const filterItems = document.querySelectorAll(".filter-item");
 
 // Getting item
@@ -186,17 +185,20 @@ filterItems.forEach((item) => {
         : galleryItems.filter((item) => item.category === category);
     displayGalleryItems(filteredItems);
     setActiveFilter(item);
+
+    const viewModal = Array.from(document.getElementsByClassName('view-modal'));
+    viewModal.forEach((item) => {
+        item.addEventListener("click", function (e) {
+            const selectedCard = item.getAttribute("data-target");
+            const selectedImg= galleryItems.find((item) => item.id === parseInt(selectedCard));
+            const modal = document.getElementsByClassName("view");
+
+            console.log(selectedImg);
+            modal[0].setAttribute('src', selectedImg.image);
+        });
+    })
   });
 });
-
-// Seacrh filter
-// searchBox.addEventListener("input", () => {
-//   const searchTerm = searchBox.value.toLowerCase();
-//   const filteredItems = galleryItems.filter((item) =>
-//     item.alt.toLowerCase().includes(searchTerm)
-//   );
-//   displayGalleryItems(filteredItems);
-// });
 
 // Show item gallery
 function displayGalleryItems(items) {
@@ -205,9 +207,8 @@ function displayGalleryItems(items) {
   items.forEach((item) => {
     const card = document.createElement("div");
     card.classList.add("col-md-4", "mb-4");
-    card.setAttribute('data-bs-target','#exampleModal');
+    card.setAttribute('data-bs-target','#exampleModal', 'exampleModalLabel');
     card.setAttribute('data-bs-toggle','modal');
-
     card.innerHTML = `
     <div class="card view-modal" data-target="${item.id}" >
       <img src="${item.image}" class="card-img-top" alt="${item.alt}">
@@ -227,16 +228,7 @@ function setActiveFilter(item) {
 }
 
 // Image onclick trigger
-// document.addEventListener("click",function (e){
-//     if(e.target.classList.contains("gallery-items")){
-//           const src = e.target.getAttribute("src");
-//           document.querySelector(".modal-img").src = src;
-//           const myModal = new bootstrap.Modal(document.getElementById('gallery-popup'));
-//           myModal.show();
-//     }
-//   })
 const viewModal = Array.from(document.getElementsByClassName('view-modal'));
-
 viewModal.forEach((item) => {
     item.addEventListener("click", function (e) {
         const selectedCard = item.getAttribute("data-target");
@@ -248,13 +240,9 @@ viewModal.forEach((item) => {
     });
 })
 
-    document.addEventListener("DOMContentLoaded", function () {
-    const galleryItems = document.getElementById("gallery-items");
-    const modalImg = document.querySelector(".modal-img");
-    const modal = new bootstrap.Modal(document.getElementById("gallery-modal"));
-
-    
-  
-    
-  });
+  //   document.addEventListener("DOMContentLoaded", function () {
+  //   const galleryItems = document.getElementById("gallery-items");
+  //   const modalImg = document.querySelector(".modal-img");
+  //   const modal = new bootstrap.Modal(document.getElementById("gallery-modal")); 
+  // });
   
